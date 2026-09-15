@@ -1,0 +1,179 @@
+/* ===== Reset ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===== Fondo general ===== */
+body {
+    font-family: 'Orbitron', sans-serif;
+    background-color: #0d0d0f; /* negro profundo */
+    color: #cfcfcf; /* gris claro */
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* ===== Header ===== */
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.header-title h1 {
+    font-size: 2em;
+    margin-bottom: 5px;
+}
+
+.header-title p {
+    color: #aaa;
+}
+
+/* ===== Botón logout ===== */
+.logout-btn {
+    background: #2a2a35;
+    color: #cfcfcf;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.logout-btn:hover {
+    background: #3a3a45;
+    transform: translateY(-2px);
+}
+
+
+/* ===== Main container ===== */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px;
+}
+
+/* ===== Encabezado ===== */
+section.text-center h1 {
+    color: #BBEDC0;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+
+section.text-center p {
+    color: #aaa;
+}
+
+/* ===== Cuadros de resumen ===== */
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.summary-card {
+    background: rgba(20, 20, 25, 0.9);
+    border: 1px solid #2a2a35;
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+    font-size: 1.2em;
+    box-shadow: 0 0 20px rgba(159, 214, 255, 0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: fadeInUp 1s ease forwards;
+}
+
+.summary-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 25px rgba(159, 214, 255, 0.25);
+}
+
+/* ===== Paneles ===== */
+.panel {
+    background: rgba(20, 20, 25, 0.9);
+    border: 1px solid #2a2a35;
+    border-radius: 12px;
+    padding: 30px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    box-shadow: 0 0 20px rgba(159, 214, 255, 0.08);
+    animation: fadeInUp 1s ease forwards;
+}
+
+.panel h2 {
+    color: #BBEDC0;
+    margin-bottom: 20px;
+    font-size: 1.6em;
+    padding-bottom: 5px;
+}
+
+/* ===== Botones ===== */
+button {
+    background: #1f1f2a;
+    color: #cfcfcf;
+    padding: 10px 16px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background: #2a2a35;
+    transform: translateY(-2px);
+}
+
+.txt-asist{
+    margin-bottom: 18px;
+}
+
+.input-email{
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+/* ===== Inputs ===== */
+input, select {
+    width: 100%;
+    background: #141418;
+    border: 1px solid #2a2a35;
+    border-radius: 6px;
+    padding: 10px;
+    color: #cfcfcf;
+    margin-bottom: 5px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus, select:focus {
+    border-color: #9fd6ff;
+    box-shadow: 0 0 8px rgba(159, 214, 255, 0.4);
+    outline: none;
+}
+
+/* ===== Tablas ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid #2a2a35;
+}
+
+thead tr {
+    background: #1f1f2a;
+}
+
+/* ===== Animaciones ===== */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
