@@ -36,7 +36,7 @@
         <section class="panel">
             <div class="panel">
                 <h2 class="text-2xl font-bold">Usuarios</h2>
-                <button class="bg-neutral-800 px-4 py-2 rounded-lg hover:bg-neutral-700 transition"
+                <button id="btn-filtrar-usuarios" class="bg-neutral-800 px-4 py-2 rounded-lg hover:bg-neutral-700 transition"
                         onclick="filtrarUsuarios('todos')">
                     <svg  xmlns="http://www.w3.org/2000/svg" width="16" height="16"  
                         fill="currentColor" viewBox="0 0 24 24" >
