@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     /**
-     * creacion de usuario
+     * Creacion de usuario
      */
     public function crear(Request $request)
     {
@@ -31,7 +31,7 @@ class UserController extends Controller
     }
 
     /**
-     * actualización de usuario existente
+     * Actualización de usuario existente
      */
     public function modificar(Request $request, $id)
     {
@@ -44,27 +44,46 @@ class UserController extends Controller
             ], 404);
         }
 
+        // Blindaje opcional de seguridad: Evitar alterar el correo del admin principal (ID 1)
+        if ($usuario->id === 1 && $request->has('email') && $request->email !== $usuario->email) {
+            return response()->json([
+                'error' => '[!] Acción no permitida: No se puede modificar el correo del administrador principal.'
+            ], 403);
+        }
+
         $usuario->update([
             'name' => $request->name ?? $usuario->name,
             'email' => $request->email ?? $usuario->email,
             'password' => $request->password ? Hash::make($request->password) : $usuario->password,
+            'status' => $request->status ?? $usuario->status,
         ]);
+
         return response()->json(['mensaje' => '[+] Usuario modificado correctamente.', 'usuario' => $usuario]);
     }
 
     /**
-     * borrar usuario
+     * Borrar usuario
      */
     public function eliminar($id)
     {
-        $usuario = User::findOrFail($id);
-        $usuario->delete();
+        try {
+            $usuario = User::findOrFail($id);
+            $usuario->delete();
 
-        return response()->json(['mensaje' => '[+] Usuario eliminado correctamente.']);
+            return response()->json(['mensaje' => '[+] Usuario eliminado correctamente.']);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json([
+                'error' => '[!] Usuario no encontrado.',
+            ], 404);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => $e->getMessage(),
+            ], 403);
+        }
     }
 
     /**
-     * listar alternat. [administración]).
+     * Listar alternat. [administración].
      */
     public function listar()
     {
@@ -76,19 +95,19 @@ class UserController extends Controller
     {
         $estado = $request->query('estado', 'todos');
 
-        //validacion
+        // validacion
         if (!in_array($estado, ['activo', 'inactivo', 'todos'])) {
             return response()->json([
                 'error' => '[!] Estado inválido -> Usar: (activo, inactivo, todos.)'
             ], 400);
         }
 
-        //consulta segun estado
+        // consulta segun estado
         $usuarios = $estado === 'todos'
             ? User::all()
             : User::where('status', $estado)->get();
 
-        //COND.B.: sin resultados
+        // COND.B.: sin resultados
         if ($usuarios->isEmpty()) {
             return response()->json([
                 'estado' => $estado,
@@ -98,13 +117,11 @@ class UserController extends Controller
             ], 404);
         }
 
-        //flujo usual
+        // flujo usual
         return response()->json([
             'estado' => $estado,
             'total' => $usuarios->count(),
             'usuarios' => $usuarios
         ], 200);
     }
-
-
 }

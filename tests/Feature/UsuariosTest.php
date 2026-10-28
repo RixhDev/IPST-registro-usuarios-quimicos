@@ -49,4 +49,24 @@ class UsuariosTest extends TestCase
                 ]);
     }
 
+    public function test_no_se_puede_eliminar_al_administrador_principal()
+    {
+        $admin = User::factory()->create([
+            'name' => 'Admin',
+            'email' => 'admin@admin.com',
+            'status' => 'activo',
+        ]);
+
+        $this->actingAs(User::factory()->create(['status' => 'activo']), 'web');
+
+        $response = $this->deleteJson('/api/usuarios/' . $admin->id);
+
+        $response->assertStatus(403)
+            ->assertJson([
+                'error' => 'Acción no permitida: El usuario administrador principal está protegido y no puede ser eliminado.',
+            ]);
+
+        $this->assertDatabaseHas('users', ['id' => $admin->id, 'email' => 'admin@admin.com']);
+    }
+
 }

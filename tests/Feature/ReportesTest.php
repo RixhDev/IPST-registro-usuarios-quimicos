@@ -71,6 +71,18 @@ class ReportesTest extends TestCase
 			->assertJsonFragment(['id' => $usuarioAusente->id]);
 	}
 
+	public function test_asistencia_tiene_los_campos_y_relacion_necesarios_para_reportes(): void
+	{
+		$asistencia = new Asistencia();
+
+		$this->assertContains('user_id', $asistencia->getFillable());
+		$this->assertContains('fecha', $asistencia->getFillable());
+		$this->assertContains('hora_entrada', $asistencia->getFillable());
+		$this->assertContains('hora_salida', $asistencia->getFillable());
+		$this->assertContains('estado', $asistencia->getFillable());
+		$this->assertTrue(method_exists($asistencia, 'user'));
+	}
+
 	private function crearAsistencia(User $usuario, string $tipo, string $hora): void
 	{
 		$fechaHora = Carbon::today()->setTimeFromTimeString($hora);

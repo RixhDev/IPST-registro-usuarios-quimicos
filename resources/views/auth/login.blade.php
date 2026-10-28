@@ -7,8 +7,8 @@
     <title>Login | Walter productos químicos</title>
     <!-- Estilos-->
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
-    <!-- Favicon -->
-    <!-- <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"> -->
+    <!-- Favicon . icono de /public/assets/Breaking-Bad-Logo.png -->
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/Breaking-Bad-Logo.png') }}">
 </head>
 <body>
 

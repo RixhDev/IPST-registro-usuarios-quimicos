@@ -129,6 +129,31 @@ button:hover {
     transform: translateY(-2px);
 }
 
+.mb-3.text-end a {
+    background: #1f1f2a !important;
+    color: #cfcfcf !important;
+    padding: 10px 16px !important;
+    margin-bottom: 20px !important;
+    border: none !important;
+    border-radius: 6px !important;
+    cursor: pointer !important;
+    font-weight: bold !important;
+    text-decoration: none !important; /* Adiós al subrayado azul */
+    display: inline-block;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.mb-3.text-end a:hover {
+    background: #2a2a35 !important;
+    color: #ffffff !important;
+    transform: translateY(-2px);
+    text-decoration: none !important;
+}
+
+.header-title .w-16.h-16{
+    height: 90px;
+}
+
 .txt-asist{
     margin-bottom: 18px;
 }

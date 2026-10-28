@@ -6,7 +6,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Dashboard | Quimicos Walter</title>
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
-    @vite('resources/js/app.js')
+    <!-- Favicon . icono de /public/assets/Breaking-Bad-Logo.png -->
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/Breaking_Bad_logo.png') }}">
+    @vite(['resources/js/app.js', 'resources/js/dashboard.js'])
 </head>
 <body class="bg-neutral-950 text-neutral-200 font-sans">
     <main class="p-10 max-w-7xl mx-auto space-y-10">
@@ -14,7 +16,9 @@
     <section class="header">
         <div class="header-content">
             <div class="header-title" style="color: #BBEDC0">
+                <img src="{{ asset('assets/Breaking_Bad_logo.png') }}" alt="Logo" class="w-16 h-16"/>    
                 <h1>Walter | Empresa productos químicos</h1>
+                
                 <p>Gestión de usuarios y asistencia</p>
             </div>
             <form action="{{ route('logout') }}" method="POST">
@@ -42,8 +46,15 @@
                         fill="currentColor" viewBox="0 0 24 24" >
                         <!--Boxicons v3.0.8 https://boxicons.com | License  https://docs.boxicons.com/free-->
                         <path d="M19.07 4.93a9.9 9.9 0 0 0-3.18-2.14A9.95 9.95 0 0 0 12 2v2c1.08 0 2.13.21 3.11.63.95.4 1.81.98 2.54 1.71s1.31 1.59 1.72 2.54c.42.99.63 2.03.63 3.11s-.21 2.13-.63 3.11c-.4.95-.98 1.81-1.72 2.54-.17.17-.34.32-.52.48L15 15.99v6h6l-2.45-2.45c.18-.15.36-.31.52-.48.92-.92 1.64-1.99 2.14-3.18.52-1.23.79-2.54.79-3.89s-.26-2.66-.79-3.89a9.9 9.9 0 0 0-2.14-3.18ZM4.93 19.07c.92.92 1.99 1.64 3.18 2.14 1.23.52 2.54.79 3.89.79v-2a7.9 7.9 0 0 1-3.11-.63c-.95-.4-1.81-.98-2.54-1.71s-1.31-1.59-1.72-2.54c-.42-.99-.63-2.03-.63-3.11s.21-2.13.63-3.11c.4-.95.98-1.81 1.72-2.54.17-.17.34-.32.52-.48L9 8.01V2H3l2.45 2.45c-.18.15-.36.31-.52.48-.92.92-1.64 1.99-2.14 3.18C2.27 9.34 2 10.65 2 12s.26 2.66.79 3.89c.5 1.19 1.22 2.26 2.14 3.18"></path>
-                        </svg>
+                    </svg>
                 </button>
+                <!-- Botón para descargar Reporte General Consolidado con Fecha Actual -->
+                <div class="mb-3 text-end">
+                    <a href="/reportes/exportar" class="btn btn-success" target="_blank"
+                    title="Descargar reporte CSV.">
+                        <i class="fas fa-file-download me-1"></i> 📥 Descargar Reporte General CSV
+                    </a>
+                </div>
             </div>
 
         <!-- Panel de Crear Usuario -->

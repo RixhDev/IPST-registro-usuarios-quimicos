@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AsistenciaController;
+use App\Http\Controllers\ReporteController;
 use App\Models\User;
 use App\Models\Asistencia;
 /*
@@ -19,10 +20,10 @@ Route::get('/ping', function () {
 
 //gestion de usuarios
 Route::middleware(['web', 'auth'])->group(function () {
-    Route::post('/usuarios', [UserController::class, 'crear']);          // Crear usuario
-    Route::put('/usuarios/{id}', [UserController::class, 'modificar']);  // Modificar usuario
-    Route::delete('/usuarios/{id}', [UserController::class, 'eliminar']); // Eliminar usuario
-    Route::get('/usuarios', [UserController::class, 'listarPorEstado']); // Listar usuarios filtrados
+    Route::post('/usuarios', [UserController::class, 'crear']);          // C
+    Route::put('/usuarios/{id}', [UserController::class, 'modificar']);  // U
+    Route::delete('/usuarios/{id}', [UserController::class, 'eliminar']); // D
+    Route::get('/usuarios', [UserController::class, 'listarPorEstado']); //R
 });
 
 //gestion de asistencia
@@ -31,9 +32,12 @@ Route::middleware('auth:sanctum')->group(function (){
     Route::post('/asistencia/salida', [AsistenciaController::class, 'registrarSalida']);     //registra salida
 
     //endpoint reportes
-    Route::get('/reportes/atrasos', [AsistenciaController::class, 'reporteAtrasos']);             //entradas atrasadas
-    Route::get('/reportes/salidas', [AsistenciaController::class, 'reporteSalidasAnticipadas']); //salidas anticipadas
-    Route::get('/reportes/inasistencias', [AsistenciaController::class, 'reporteInasistencias']); //inasistencias
+    Route::get('/reportes/atrasos', [ReporteController::class, 'atrasos']);                   //entradas atrasadas
+    Route::get('/reportes/salidas', [ReporteController::class, 'salidasAnticipadas']);         //salidas anticipadas
+    Route::get('/reportes/inasistencias', [ReporteController::class, 'inasistencias']);       //inasistencias
+    
+    // exportar reporte consolidado con fecha actual
+    Route::get('/reportes/exportar', [ReporteController::class, 'exportarReporteGeneral']);
 });
 
 Route::get('/asistencias', function (){

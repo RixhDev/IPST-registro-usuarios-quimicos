@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AsistenciaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ReporteController;
 
 //BLOQUE LOGIN || BLOQUE LOGIN || BLOQUE LOGIN
 Route::get('/', [AuthController::class, 'showLogin'])->name('login');
@@ -16,6 +17,8 @@ Route::middleware('auth')->group(function (){
         return view('asistencia.index');
     })->name('asistencia');
 });
+
+Route::get('/reportes/exportar', [ReporteController::class, 'exportarReporteGeneral']);
 
 Route::middleware('auth')->get('/welcome', function () {
     return view('welcome');

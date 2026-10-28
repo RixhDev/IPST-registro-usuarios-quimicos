@@ -9,10 +9,14 @@ class Asistencia extends Model
 {
     use HasFactory;
 
-    // Campos que se pueden asignar masivamente
+    // Campos necesarios para los reportes de atrasos, salidas anticipadas e inasistencias.
     protected $fillable = [
         'user_id',
         'tipo',
+        'fecha',
+        'hora_entrada',
+        'hora_salida',
+        'estado',
     ];
 
     /**
@@ -21,7 +25,7 @@ class Asistencia extends Model
      */
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     /**
